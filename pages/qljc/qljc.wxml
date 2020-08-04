@@ -1,0 +1,190 @@
+<!--pages/qljc/qljc.wxml-->
+
+<form bindsubmit="formsubmit" >
+<view>
+   <label>桥梁检测页面</label>                    
+</view>
+<view>
+  <picker mode="date" value="{{jcrq}}" start="2020-04-01" end="2099-12-31" bindchange="bind_jcrq" bindinput='p_jcrq'>
+    <view  class="picker">检测日期: {{bridgeInfo.jcrq}}</view>
+  </picker>
+</view>
+
+<view>
+  <picker mode="time" value="{{jcsj}}" start="06:00" end="22:01" bindchange="bind_jcsj">
+    <view  class="picker">检测时间: {{bridgeInfo.jcsj}}</view>
+  </picker>
+</view>
+
+<view >
+  <picker mode="region" bindchange="bind_jcdq" value="{{bridgeInfo.jcdq}}" custom-item="{{customItem}}">
+    <view class="picker">
+      检测地区：{{bridgeInfo.jcdq[0]}}  {{bridgeInfo.jcdq[1]}}  {{bridgeInfo.jcdq[2]}}
+    </view>
+  </picker>
+</view>
+<view>
+  <label for="qlmc" style="float:left">桥梁名称: </label>
+  <input class="text" name="qlmc"
+   placeholder="此处输入桥梁名称" bindinput="bind_qlmc" />
+</view>
+
+<view>
+  <label for="szlm" style="float:left">所在路名: </label>
+  <input class="text" name="szlm"
+   placeholder="此处输入所在路名" bindinput="bind_szlm" />
+</view>
+<view>
+  <label for="kyhl" style="float:left">跨越（河流）: </label>
+  <input class="text" name="kyhl"
+   placeholder="此处输入跨越（河流）" bindinput="bind_kyhl" />
+</view>
+      
+<view>
+  <button for="qldw" style="float:left" bindtap="map">获取当前经纬度: </button>
+  <view>经度:{{long}}</view>
+  <view>纬度:{{lat}}</view>
+</view>
+
+<view>
+  <button style="float:left" bindtap="chooseimage">正面图片</button>
+   <image src="{{tempFilePaths1}}" mode="aspecFill" style="width: 100%; height: 600rpx"/> 
+</view>
+<view>
+  <button style="float:left" bindtap="chooseimage">立面图片</button>
+   <image src="{{tempFilePaths1}}" mode="aspecFill" style="width: 100%; height: 600rpx"/> 
+</view>
+<!-- </view>
+ <button type="default" size="default" bindtap="bind_qjt">全景图</button>
+<view class="" wx:for="{{sources}}">
+  <image src="{{item}}" />
+</view> -->
+
+
+
+<view>
+  <picker bindchange="bind_hqxjcfx" value="{{index_hqxjcfx}}" range="{{arr_hqxjcfx}}">
+    <view class="picker">横桥向检测方向：{{bridgeInfo.hqxjcfx}}</view>
+  </picker>
+</view>
+
+<view>
+  <picker bindchange="bind_sqxjcfx" value="{{index_sqxjcfx}}" range="{{arr_sqxjcfx}}">
+    <view class="picker">顺桥向检测方向：{{bridgeInfo.sqxjcfx}}</view>
+  </picker>
+</view>
+
+
+<view>
+  <picker bindchange="bind_dldj" value="{{index_dldj}}" range="{{arr_dldj}}">
+    <view class="picker">道路等级：{{bridgeInfo.dldj}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_qmjg" value="{{index_qmjg}}" range="{{arr_qmjg}}">
+    <view class="picker">桥面结构:{{bridgeInfo.qmjg}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_ssfxs" value="0" range="{{arr_ssfxs}}">
+    <view class="picker">伸缩缝型式：{{bridgeInfo.ssfxs}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_zxjj" value="{{index_zxjj}}" range="{{arr_zxjj}}">
+    <view class="picker">正斜交角:{{bridgeInfo.zxjj}}</view>
+  </picker>
+</view>
+
+
+<view>
+  <label for="qlks" style="float:left">请输入桥梁跨数: </label>
+  <input class="text" name="qlks"
+   placeholder="此处输入桥梁跨数" value='{{qlks}}' bindinput="bind_qlks"/>
+</view>
+
+<view>
+  <label for="kjzh" style="float:left">请输入跨径组合: </label>
+  <input class="text" name="kjzh"
+   placeholder="此处输入跨径组合"   bindinput="bind_kjzh"  />
+
+
+</view>
+
+<view>
+  <label for="hxbz" style="float:left">请输入横向布置: </label>
+  <input class="text" name="hxbz"
+   placeholder="此处输入横向布置"  bindinput="bind_hxbz"/>
+</view>
+<view>
+  <label for="lgcc" style="float:left">请输入栏杆尺寸: </label>
+  <input class="text" name="lgcc"
+   placeholder="此处输入栏杆尺寸" bindinput="bind_lgcc"/>
+</view>
+<view>
+  <label for="lysgd" style="float:left">请输入路沿石高度: </label>
+  <input class="text" name="lysgd"
+   placeholder="此处输入路沿石高度" bindinput="bind_lysgd"/>
+</view>
+<view>
+  <label for="psg" >请输入排水口类型尺寸和个数字: </label>
+  <input class="text" name="psg"
+   placeholder="此处输入排水口类型尺寸和个数字" bindinput="bind_psg" />
+</view>
+
+<view>
+  <label for="dbcd" style="float:left">请输入搭板长度: </label>
+  <input class="text" name="dbcd"
+   placeholder="此处输入搭板长度" bindinput="bind_dbcd" />
+   </view>
+<view>
+  <picker bindchange="bind_qtxs" value="{{index_qtxs}}" range="{{arr_qtxs}}">
+    <view class="picker">桥台型式:{{bridgeInfo.qtxs}}</view>
+  </picker>
+</view>
+<view>
+  <picker mode="selector" bindchange="bind_qdxs" value="{{index_qdxs}}" range="{{arr_qdxs}}">
+    <view class="picker">桥墩型式:{{bridgeInfo.qdxs}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_jltx" value="{{index_jltx}}" range="{{arr_jltx}}">
+    <view class="picker">静力体系:{{bridgeInfo.jltx}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_hjmxs" value="{{index_hjmxs}}" range="{{arr_hjmxs}}">
+    <view class="picker">横截面型式:{{bridgeInfo.hjmxs}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_sgff" value="{{index_sgff}}" range="{{arr_sgff}}">
+    <view class="picker">施工方法:{{bridgeInfo.sgff}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_hxlx" value="{{index_hxlx}}" range="{{arr_hxlx}}">
+    <view class="picker">横向联系:{{bridgeInfo.hxlx}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_zzxs" value="{{index_zzxs}}" range="{{arr_zzxs}}">
+    <view class="picker">支座型式:{{bridgeInfo.zzxs}}</view>
+  </picker>
+</view>
+<view>
+  <picker bindchange="bind_clxs" value="{{clxs}}" range="{{arr_clxs}}">
+    <view class="picker">材料型式:{{bridgeInfo.clxs}}</view>
+  </picker>
+</view>
+
+
+ 
+ <button   formType="submit" style="float:left" >提交</button>
+         
+ <button bindtap="bind_modify">修改</button>
+  <button form-type="reset" style="float:left" bindtap="bind_rst">重置</button>
+ <button bindtap="bind_history">历史记录</button> 
+
+
+</form>

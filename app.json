@@ -1,0 +1,25 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/qljc/qljc",
+    "pages/history/history",
+    "pages/lscx/lscx",
+   "pages/index/index",
+    "pages/logs/logs"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "桥梁外观检测现场记录",
+    "navigationBarTextStyle": "black"
+  }, 
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+
+}

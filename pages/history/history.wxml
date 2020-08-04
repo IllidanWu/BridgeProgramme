@@ -1,0 +1,19 @@
+
+<view>
+<switch wx:for="{{bridgeList}}" >{{index}}  {{item.qlmc}} {{item.jcrq}} {{item.jcsj}}</switch>
+<view class="">
+</view>
+  <!-- <view>请输入查询桥梁编号：</view> -->
+  <view class="">
+    <input class="input_qlbh" bindinput="bind_qlbh" placeholder="此处输入查询桥梁的编号" />
+  </view>
+</view>
+
+<view class="flex-row" style="display:flex;flex-direction:row;">
+    <!-- <button class="flex-view-item" bindtap="bind_save">保存</button> -->
+    <button class="flex-view-item" bindtap="bind_query">查询记录</button>
+    <button class="flex-view-item" bindtap="bind_clear">清空记录</button>
+    <!-- <button class="flex-view-item" bindtap="bind_query">查询</button> -->
+</view>
+
+ <button bindtap="bind_reveal">查看</button> 
